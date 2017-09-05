@@ -29,7 +29,7 @@ class MyWiki_Acl extends Zend_Acl
             $this->addRole(new Zend_Acl_Role('administrator'), $parents);
 
             // define resources
-            $this->add(new Zend_Acl_Resource('article'));
+            $this->addResource(new Zend_Acl_Resource('article'));
 
             // Assign access control for the resources
             // Guest user only has view privileges
