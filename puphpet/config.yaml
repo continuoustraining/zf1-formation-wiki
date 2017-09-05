@@ -88,6 +88,7 @@ server:
     install: '1'
     packages:
         - vim
+        - sqlite
 users_groups:
     install: '1'
     groups: {  }
