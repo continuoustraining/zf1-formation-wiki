@@ -21,9 +21,9 @@ vagrantfile:
                 machines:
                     vflm_dnwahpblg4zb:
                         id: machine1
-                        hostname: zf1-guestbook.local
+                        hostname: zf1-wiki.local
                         network:
-                            private_network: 192.168.56.176
+                            private_network: 192.168.56.177
                             forwarded_port:
                                 vflmnfp_pt9bqgc68cfq:
                                     host: '7168'
@@ -226,7 +226,7 @@ apache:
         - rewrite
     vhosts:
         av_r70n1t9l614z:
-            servername: zf1-guestbook.local
+            servername: zf1-wiki.local
             docroot: /var/www/public
             port: '80'
             setenvif:
