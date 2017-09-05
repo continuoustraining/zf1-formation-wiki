@@ -12,3 +12,4 @@ vendor/*
 bin/dbunit
 bin/phpunit
 .idea
+application/data/logs/*
