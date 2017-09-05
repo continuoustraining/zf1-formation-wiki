@@ -5,7 +5,7 @@ class ArticleController extends Zend_Controller_Action
 
     public function viewAction()
     {
-    	$articleTable = new default_Model_DbTable_Articles();
+    	$articleTable = new Default_Model_DbTable_Articles();
         $request      = $this->getRequest();
         $title        = $request->getParam('title');
 
@@ -26,16 +26,16 @@ class ArticleController extends Zend_Controller_Action
             	->order('modified DESC')
             	->limit(1)
             	->query()
-            	->fetchObject('default_Model_Article');
+            	->fetchObject('Default_Model_Article');
         }
         
         if ($listing) {
-        	$this->view->lastModified 	= $listing->finddefault_Model_DbTable_UsersByLastModified()->current();
-        	$originalListing = $listing->finddefault_Model_DbTable_ArticlesByOriginal()->current();
-        	$this->view->owner 			= $originalListing->finddefault_Model_DbTable_UsersByLastModified()->current();
+        	$this->view->lastModified 	= $listing->findDefault_Model_DbTable_UsersByLastModified()->current();
+        	$originalListing = $listing->findDefault_Model_DbTable_ArticlesByOriginal()->current();
+        	$this->view->owner 			= $originalListing->findDefault_Model_DbTable_UsersByLastModified()->current();
             $this->view->listing 		= $listing;
         } else {
-        	$this->_forward('newarticle');
+        	$this->forward('newarticle');
         }
     }
     
@@ -44,10 +44,10 @@ class ArticleController extends Zend_Controller_Action
 		
         $title = $this->_request->getParam('title');
         if ($this->_checkAcl($title)) {
-        	$form = new default_Form_Article();
+        	$form = new Default_Form_Article();
         	if ($this->_request->isPost()) {
         		if ($form->isValid($this->_request->getPost())) {
-        			$articleTable = new default_Model_DbTable_Articles();
+        			$articleTable = new Default_Model_DbTable_Articles();
         			$article = $articleTable->fetchNew();
         			$article->content = $form->getValue('content');
         			$article->title = $title;
@@ -84,7 +84,7 @@ class ArticleController extends Zend_Controller_Action
         $this->view->pageTitle = $title;
         $history = array();
         $historyOwner = array();
-        $articleTable = new default_Model_DbTable_Articles();
+        $articleTable = new Default_Model_DbTable_Articles();
         $stmt = $articleTable
 		            ->select()
 		            ->where('title = ?')
@@ -92,7 +92,7 @@ class ArticleController extends Zend_Controller_Action
 		            ->query();
 		$stmt->execute(array($title));
 		$this->view->listing = null;
-        while (($obj = $stmt->fetchObject('default_Model_Article')) !== false) {
+        while (($obj = $stmt->fetchObject('Default_Model_Article')) !== false) {
 //        	$rs = 
 //        	$obj->real_name = $rs->current()->real_name;
         	$this->view->listing = $history[] = $obj;
@@ -116,21 +116,21 @@ class ArticleController extends Zend_Controller_Action
         }
 
         // Validate form
-        $form    = new default_Form_ArticleEdit();
+        $form    = new Default_Form_ArticleEdit();
         $form->setMethod('post')
     		->setAction($this->view->url());
         
         $request = $this->getRequest();
         if (!$request->isPost() || !$form->isValid($request->getPost())) {
             // Failed validation; redisplay form
-			$articleTable = new default_Model_DbTable_Articles();
+			$articleTable = new Default_Model_DbTable_Articles();
             $listing = $articleTable
             	->select()
             	->where('title = ?', $title)
             	->order('modified DESC')
             	->limit(1)
             	->query()
-            	->fetchObject('default_Model_Article');
+            	->fetchObject('Default_Model_Article');
             	
             if (!$listing) {
                 // Attempted to submit an edit form for a new article
@@ -146,7 +146,7 @@ class ArticleController extends Zend_Controller_Action
             return;
         }
 
-		$articleTable = new default_Model_DbTable_Articles();
+		$articleTable = new Default_Model_DbTable_Articles();
         $article = $articleTable->fetchNew();
         $article->content = $form->getValue('content');
         $article->title = $title;

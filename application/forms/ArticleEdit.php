@@ -1,5 +1,5 @@
 <?php
-class default_Form_ArticleEdit extends Zend_Form
+class Default_Form_ArticleEdit extends Zend_Form
 {
     public function init()
     {

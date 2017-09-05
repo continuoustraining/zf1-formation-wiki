@@ -3,7 +3,7 @@ class UserController extends Zend_Controller_Action
 {
     public function indexAction()
     {
-        $this->view->form = new default_Form_Login();
+        $this->view->form = new Default_Form_Login();
     }
 
     public function loginAction()
@@ -16,7 +16,7 @@ class UserController extends Zend_Controller_Action
         }
 
         // Make sure form validates first
-        $form = new default_Form_Login();
+        $form = new Default_Form_Login();
         if (!$form->isValid($request->getPost())) {
             $this->view->form = $form;
             $this->render('index');
@@ -41,7 +41,7 @@ class UserController extends Zend_Controller_Action
             return;
         }
 
-        $userTable = new default_Model_DbTable_Users();
+        $userTable = new Default_Model_DbTable_Users();
         // Store all user details except password in authentication session
         $auth->getStorage()->write(
             $userTable->find($adapter->getResultRowObject('user_id')->user_id)->current()
@@ -62,7 +62,7 @@ class UserController extends Zend_Controller_Action
 
     public function viewAction()
     {
-    	$userTable = new default_Model_DbTable_Users();
+    	$userTable = new Default_Model_DbTable_Users();
     	$user = $userTable->find(
     		$this->_request->getParam('user')
     	)->current();

@@ -1,6 +1,6 @@
 <?php
 
-class default_Model_Article extends Zend_Db_Table_Row_Abstract
+class Default_Model_Article extends Zend_Db_Table_Row_Abstract
 {
 	protected $_data = array(
 		'listing_id' 	=> null,	
@@ -9,6 +9,6 @@ class default_Model_Article extends Zend_Db_Table_Row_Abstract
 		'modified' 		=> null,
 		'user_id'		=> null
 	);
-	protected $_tableClass = 'default_Model_DbTable_Articles';
+	protected $_tableClass = 'Default_Model_DbTable_Articles';
 	
 }

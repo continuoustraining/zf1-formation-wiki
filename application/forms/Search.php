@@ -1,5 +1,5 @@
 <?php
-class default_Form_Search extends Zend_Form
+class Default_Form_Search extends Zend_Form
 {
     public function init()
     {
