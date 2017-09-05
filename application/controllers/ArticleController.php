@@ -18,7 +18,9 @@ class ArticleController extends Zend_Controller_Action
 
         if ($request->getParam('id')) {
             $listingId = $request->getParam('id');
-            $listing   = $articleTable->find($listingId);
+            /* -- Use $articleTable to find a single listing based on $listingId 
+             * Place it in $listing.
+             * */
         } else {
             $listing = $articleTable
             	->select()
@@ -35,7 +37,9 @@ class ArticleController extends Zend_Controller_Action
         	$this->view->owner 			= $originalListing->findDefault_Model_DbTable_UsersByLastModified()->current();
             $this->view->listing 		= $listing;
         } else {
-        	$this->forward('newarticle');
+        	/* -- Forward the request to the newarticle action.  Test this 
+        	 * by navigating to an article that does not exist.
+        	 */
         }
     }
     
@@ -49,11 +53,16 @@ class ArticleController extends Zend_Controller_Action
         		if ($form->isValid($this->_request->getPost())) {
         			$articleTable = new Default_Model_DbTable_Articles();
         			$article = $articleTable->fetchNew();
-        			$article->content = $form->getValue('content');
-        			$article->title = $title;
-        			$article->modified = time();
-        			$article->user_id = Zend_Auth::getInstance()->getIdentity()->user_id;
-        			$article->save();
+        			
+        			/* -- Populate the $article object with 
+        			 *  - The content from the form;
+        			 *  - The title 
+        			 *  - Set the modified time to the current time
+        			 *  - set the user_id from the current identity of the user
+        			 *  
+        			 *  Finish by saving it.
+        			 */
+        			
         			$this->_forward('view', 'article', null, array('title' => $title));
         			return;        			
         		}
@@ -66,7 +75,8 @@ class ArticleController extends Zend_Controller_Action
 	            )
 			);
             $form->setAction($url);
-    		$this->view->form = $form;
+            /* -- Attach the form to the view object property called "form" */
+    		
         }
     	
     }
@@ -87,14 +97,16 @@ class ArticleController extends Zend_Controller_Action
         $articleTable = new Default_Model_DbTable_Articles();
         $stmt = $articleTable
 		            ->select()
-		            ->where('title = ?')
+		            /* -- add a where clause for selecting by "title".
+		             * Don't forget to put in the prepared statement
+		             * placeholder.
+		             * */
 		            ->order('modified DESC')
 		            ->query();
-		$stmt->execute(array($title));
+		/* -- Execute the prepared statement, remembering to pass in the title */
 		$this->view->listing = null;
         while (($obj = $stmt->fetchObject('Default_Model_Article')) !== false) {
-//        	$rs = 
-//        	$obj->real_name = $rs->current()->real_name;
+
         	$this->view->listing = $history[] = $obj;
         	
         }
@@ -140,8 +152,8 @@ class ArticleController extends Zend_Controller_Action
             	$form->getElement('content')->setValue($listing->content);
             }
             $this->view->form        = $form;
-            $this->view->pageTitle   = $title;
-            $this->view->listing    = $listing;
+            /* -- Assign $title to the view's pageTitle property */
+            /* -- Assign $listing to the view's listing property */
             
             return;
         }
@@ -178,7 +190,9 @@ class ArticleController extends Zend_Controller_Action
             $username = $auth->getIdentity()->username;
         }
         $acl      = new MyWiki_Acl();
-        if (!$acl->isAllowed($username, 'article', 'create')) {
+        /* -- Validate $uesrname against the ACL for the action "create"
+         * on the resource "article" */
+        if (!false) {
             if ('view' != $this->getRequest()->getActionName()) {
                 throw new MyWiki_PermissionDenied_Exception('You need to be logged in to create and edit pages!');
                 $this->_forward('view', 'article', null,array('title' => $title));

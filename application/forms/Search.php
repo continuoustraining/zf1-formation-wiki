@@ -21,10 +21,6 @@ class Default_Form_Search extends Zend_Form
         ));
 
         $this->setMethod('get');
-
-        $this->setDecorators(array(
-            'FormElements',
-            'Form',
-        ));
+		/* -- Set the decorators for this form to FormElements and Form */
     }
 }

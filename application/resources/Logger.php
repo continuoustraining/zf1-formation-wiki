@@ -30,8 +30,7 @@ class MyWiki_Resource_Logger extends Zend_Application_Resource_ResourceAbstract
         if ($this->_log === NULL) {
         	$options = $this->getOptions();
             $logFile    = $options['logs'] . date( 'Ymd') . '_' . $options['filename'];
-            $writer     = new Zend_Log_Writer_Stream($logFile);
-            $this->_log = new Zend_Log($writer);            
+            /* -- Create and attach a new Zend_Log instance to $this->_log */
         }
         
         return $this->_log;

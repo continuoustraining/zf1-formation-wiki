@@ -14,7 +14,7 @@ class MyWiki_Acl extends Zend_Acl
         try {
             // Define Roles guest, user and publisher
             $this->addRole(new Zend_Acl_Role('guest'))
-                 ->addRole(new Zend_Acl_Role('user'))
+                 /* -- Add the ACL role for 'user' */
                  ->addRole(new Zend_Acl_Role('admin'));
 
             // array of defined roles - the order in which they appear is important
@@ -23,13 +23,13 @@ class MyWiki_Acl extends Zend_Acl
             $this->addRole(new Zend_Acl_Role('Guest'), $parents);
 
             // Define role for a user zend - the publisher in our application
-            $this->addRole(new Zend_Acl_Role('zenduser'), $parents);
+            /* -- Add the ACL for "zenduser" which inherits $parents */
 
             // Define role for a user zend - the publisher in our application
             $this->addRole(new Zend_Acl_Role('administrator'), $parents);
 
             // define resources
-            $this->addResource(new Zend_Acl_Resource('article'));
+            /* -- Add a resource called "article" to the ACL */
 
             // Assign access control for the resources
             // Guest user only has view privileges
@@ -37,7 +37,7 @@ class MyWiki_Acl extends Zend_Acl
 
             // the user zenduser can view, edit, create - role assertions
             // null indicates that the allow rules apply to all resources
-            $this->allow('zenduser', 'article', array('view', 'create', 'edit'));
+            /* -- Allow "zenduser" to access the "view", "create" and "edit" actions for resource "article" */
 
             // The user Administrator has access to all resources
             $this->allow('administrator');

@@ -3,10 +3,9 @@ class Default_Form_ArticleEdit extends Zend_Form
 {
     public function init()
     {
-        $this->addElement('textarea', 'content', array(
-            'filters'    => array('StringTrim'),
-            'required'   => true,
-        ));
+    	/* -- Create a required textarea element called "content
+    	 * with a StringTrim filter 
+    	 */
 
         $this->addElement('submit', 'Save', array(
             'size'   => 10,

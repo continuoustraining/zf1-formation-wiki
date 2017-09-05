@@ -11,7 +11,7 @@ $this->headTitle()->prepend($this->pageTitle);
 <h2><?php echo $this->escape(stripslashes($this->pageTitle)) ?></h2>
 
 <p>Make changes to this article, preview and save your edits</p>
-<?php echo $this->form ?>
+<?php /* -- Echo the form that was attached in the controller */ ?>
 <?php echo $this->render('article/_help.phtml') ?>
 
         </div>

@@ -7,7 +7,9 @@ class Zend_View_Helper_Header extends Zend_View_Helper_Abstract
         $auth     = Zend_Auth::getInstance();
         $username = 'Guest';
         if ($auth->hasIdentity()) {
-            $username = $auth->getIdentity()->username;
+        	/* -- Retrieve the username parameter from the Zend_Auth 
+        	 * identity and place it in $username
+        	 */
         }
 
         $applicationName = $this->view->applicationName;

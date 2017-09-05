@@ -5,6 +5,6 @@
  * 
  */
 
-class MyWiki_Exception extends Exception 
+class MyWiki_Exception /* -- Make this a valid exception class */
 {
 }

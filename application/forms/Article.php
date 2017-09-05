@@ -7,11 +7,10 @@ class Default_Form_Article extends Zend_Form
             'filters'    => array('StringTrim'),
             'required'   => true,
         ));
-
-        $this->addElement('submit', 'Create', array(
-            'size'   => 10,
-            'label'  => 'Create',
-            'ignore' => true,
-        ));
+		/* -- Create a "submit" element with 
+		 * size = 10
+		 * label = Create
+		 * ignore = true
+		 */
     }
 }

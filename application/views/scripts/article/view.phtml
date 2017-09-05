@@ -32,8 +32,7 @@ echo $this->url(
 )
 			?>"><?php echo $this->lastModified->real_name ?></a></p>
 			<p><?php 
-			
-			echo $this->wikiText($this->listing->content);
+			/* -- Pass the text through the wikiText helper and echo it */
 			
 			?></p>
 

@@ -2,5 +2,11 @@
 
 class Default_Model_User extends Zend_Db_Table_Row_Abstract
 {
-	protected $_tableClass = 'Default_Model_DbTable_Users';
+	/* -- Set the table class to "Default_Model_DbTable_Users"
+	 * 
+	 * If you need help on the property name, look at the code
+	 * for the parent class
+	 * 
+	 */
+	
 }

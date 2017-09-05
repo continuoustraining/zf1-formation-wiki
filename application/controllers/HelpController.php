@@ -1,7 +1,5 @@
 <?php
 class HelpController extends Zend_Controller_Action 
 {
-    public function indexAction() 
-    {
-    }
+    /* -- Create the action for the main help page */
 }
